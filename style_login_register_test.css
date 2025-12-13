@@ -1,0 +1,81 @@
+        /* --- General Setup --- */
+        body { background-color: #f8f9fa; } /* Light background */
+        .card { 
+            border: 2px solid #dee2e6; /* Slightly thicker border for definition */
+            border-radius: 1.5rem; /* More rounded corners like the image */
+            max-width: 400px;
+        }
+
+        /* --- Toggle Button Styling --- */
+        /* Hide the actual radio inputs */
+        .form-toggle-radio {
+            display: none;
+        }
+
+        /* Container for the buttons (placed outside the main card for styling) */
+        .toggle-wrapper {
+            width: 400px; /* Match the max-width of the card below */
+            margin-bottom: -15px; /* Pull the buttons down slightly to overlap the card */
+        }
+        
+        /* Style the labels (which act as our buttons) */
+        .toggle-btn {
+            cursor: pointer;
+            text-align: center;
+            padding: 8px 20px;
+            font-weight: bold;
+            color: #0d6efd; /* Blue text color for inactive state */
+            background-color: white; 
+            border: 1px solid #0d6efd; /* Blue border */
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Specific border radius for the two buttons */
+        .toggle-btn.login-label {
+            border-top-left-radius: 0.5rem;
+            border-bottom-left-radius: 0.5rem;
+            border-right: none;
+        }
+        .toggle-btn.register-label {
+            border-top-right-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+        }
+        
+        /* Style for the active/checked button */
+        #login-radio:checked + .toggle-btn-group label[for="login-radio"],
+        #register-radio:checked + .toggle-btn-group label[for="register-radio"] {
+            background-color: #0d6efd; /* Primary blue for active state */
+            color: white; /* White text for contrast */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow on active button */
+        }
+
+        /* --- Form Visibility Logic --- */
+        #login-form, #register-form {
+            display: none;
+            padding: 1rem 0;
+        }
+        #login-radio:checked ~ .card-wrapper #login-form {
+            display: block;
+        }
+        #register-radio:checked ~ .card-wrapper #register-form {
+            display: block;
+        }
+
+        /* --- Input Field Styling (to match the image's large, rounded fields) --- */
+        .form-control {
+            height: 50px; /* Taller input fields */
+            border-radius: 25px; /* Highly rounded corners */
+            padding-left: 20px;
+            font-size: 1.1rem;
+            border-color: #dee2e6;
+        }
+        .form-label {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .btn-primary {
+            height: 55px; /* Taller submit button */
+            border-radius: 30px; /* Highly rounded submit button */
+            font-size: 1.3rem;
+            font-weight: bold;
+        }

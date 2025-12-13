@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Register Page - Separated</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* --- Custom CSS for Styling and Toggle Logic --- */
+/* Custom Styles to Override the Submit Button's Hover/Active States */
+
+/* Target the specific submit button at the bottom of the form */
+.btn-primary.submit-btn {
+    /* Base style (for reference) */
+    --bs-btn-bg: #158915; 
+    --bs-btn-border-color: #158915;
+    --bs-btn-color: white;
+}
+
+.btn-primary.submit-btn:hover,
+.btn-primary.submit-btn:focus {
+    /* Change the color when the mouse is over the button or it's focused */
+    background-color: #106810; /* Slightly Darker Blue */
+    border-color: #106810; 
+    /* Overriding Bootstrap's default focus shadow */
+    box-shadow: 0 0 0 0.25rem rgba(49, 132, 253, 0.5); 
+}
+
+.btn-primary.submit-btn:active,
+.btn-primary.submit-btn.active {
+    /* Change the color when the button is actively being pressed */
+    background-color: #093d09 !important; /* Even Darker Blue (Use !important if needed to ensure precedence) */
+    border-color: #093d09 !important;
+}
+
+/* Ensure the text remains white on all states */
+.btn-primary.submit-btn:hover,
+.btn-primary.submit-btn:active,
+.btn-primary.submit-btn.active {
+    color: white; 
+}
+        /* 1. General Container and Card Styling */
+        body { 
+            background-color: #f8faf8; /* Light background */
+        }
+        .main-container {
+            width: 100%;
+            max-width: 400px; /* Set the maximum width for the whole component */
+        }
+        .form-card { 
+            /* Styling for the main login/register box */
+            background-color: white; 
+            border: 2px solid #9bd69b; /* Light blue border */
+            border-radius: 1.5rem; /* Rounded corners for the card */
+            padding: 2.5rem 2rem 2rem; /* Extra padding on top to give space from buttons */
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+            /* Set a background color slightly different from the body for contrast */
+            background-color: #eefcee;
+        }
+        
+        /* 2. Toggle Button Styling (Floating Separated Bar) */
+        .toggle-group {
+            /* This is the key change: clear margin to separate the buttons */
+            margin-bottom: 20px; 
+            z-index: 10; 
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            /* Add a subtle shadow/border to the entire button bar */
+            border-radius: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Important for containing the button borders */
+        }
+        
+        /* Hide the actual radio inputs */
+        .form-toggle-radio {
+            display: none;
+        }
+
+        /* Style the label (button) appearance */
+        .toggle-btn {
+            cursor: pointer;
+            text-align: center;
+            padding: 10px 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: white; 
+            background-color: #093e09; /* Active green color */
+            flex-grow: 1; /* Make both buttons equal width */
+            /* Start with the inactive look */
+            background-color: white;
+            color: #158915;
+            border: 2px solid #158915;
+            transition: all 0.2s;
+        }
+
+        /* Specific border radius for the two buttons */
+        .toggle-btn.login-label {
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+            border-right: none;
+        }
+        .toggle-btn.register-label {
+            border-top-right-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+        }
+        
+        /* Style for the active/checked button */
+        /* When checked, set the background to primary blue and text to white */
+        #login-radio:checked ~ .toggle-group label[for="login-radio"],
+        #register-radio:checked ~ .toggle-group label[for="register-radio"] {
+            background-color: #158915;
+            color: white;
+        }
+
+        /* 3. Form Visibility Logic */
+        #login-form, #register-form {
+            display: none;
+        }
+        /* The Sibling Selector (~) controls visibility */
+        #login-radio:checked ~ .form-content-area #login-form {
+            display: block;
+        }
+        #register-radio:checked ~ .form-content-area #register-form {
+            display: block;
+        }
+
+        /* 4. Form Field Customization (Matching the Image) */
+        .form-control {
+            height: 55px;
+            border-radius: 25px;
+            padding-left: 20px;
+            font-size: 1rem;
+            border: 2px solid #dee2e6;
+            background-color: white; /* Ensure input background is white */
+        }
+        .form-label {
+            font-weight: bold;
+            font-size: 1rem;
+            color: #212529;
+            min-width: 100px; /* Ensure labels take a fixed width */
+        }
+        .btn-primary.submit-btn {
+            height: 60px;
+            border-radius: 30px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-top: 2.5rem; /* More space above the submit button */
+            background-color: #158915;
+            border-color: #158915;
+        }
+    </style>
+</head>
+<body class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+
+    <div class="main-container">
+
+        <input type="radio" id="login-radio" name="form-toggle" class="form-toggle-radio" checked>
+        <input type="radio" id="register-radio" name="form-toggle" class="form-toggle-radio">
+
+        <div class="toggle-group">
+            <label for="login-radio" class="toggle-btn login-label">Login</label>
+            <label for="register-radio" class="toggle-btn register-label">Register</label>
+        </div>
+
+        <div class="form-card form-content-area">
+            
+            <div id="login-form">
+                <h4 class="text-center mb-5">Login</h4>
+                <form>
+                    <div class="mb-4 d-flex align-items-center">
+                        <label for="loginEmail" class="form-label me-3">E-mail:</label>
+                        <input type="email" class="form-control flex-grow-1" id="loginEmail" placeholder="Write Your E-mail Here" required>
+                    </div>
+                    <div class="mb-4 d-flex align-items-center">
+                        <label for="loginPassword" class="form-label me-3">Passsword:</label>
+                        <input type="password" class="form-control flex-grow-1" id="loginPassword" placeholder="Write Your Password Here" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 submit-btn">LOGIN</button>
+                </form>
+            </div>
+
+            <div id="register-form">
+                <h4 class="text-center mb-5">Register</h4>
+                <form>
+                    <div class="mb-4 d-flex align-items-center">
+                        <label for="registerName" class="form-label me-3">Username:</label>
+                        <input type="text" class="form-control flex-grow-1" id="registerName" placeholder="Create Your Username Here" required>
+                    </div>
+                    <div class="mb-4 d-flex align-items-center">
+                        <label for="registerEmail" class="form-label me-3">E-mail:</label>
+                        <input type="email" class="form-control flex-grow-1" id="registerEmail" placeholder="Create Your E-mail Here" required>
+                    </div>
+                    <div class="mb-4 d-flex align-items-center">
+                        <label for="registerPassword" class="form-label me-3">Password:</label>
+                        <input type="password" class="form-control flex-grow-1" id="registerPassword" placeholder="Create Your Password Here" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 submit-btn">REGISTER</button>
+                </form>
+            </div>
+
+        </div>
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
