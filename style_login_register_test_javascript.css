@@ -19,6 +19,7 @@
 /* --- General Page Setup --- */
 body { 
     background-color: #f8faf8; /* Light background */
+    font-family: 'Inter', 'Arial', sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column; /* Stack container and footer vertically */
