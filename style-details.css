@@ -1,0 +1,63 @@
+/* --- Top Banner Styling --- */
+.top-banner {
+    width: 100%;
+    background-color: transparent; /* Key green color */
+    padding: 20px 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.banner-logo {
+    color: white;
+    font-size: 2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+    font-family: 'Inter', 'Arial', sans-serif;
+}
+.details-container { 
+    max-width: 900px;
+    margin: 40px auto; }
+.main-img-large { 
+    width: 100%; height: 450px; object-fit: cover; 
+    border-radius: 1.5rem; border: 3px solid #eefcee;
+}
+.gallery-thumb { 
+    width: 100%; height: 100px; object-fit: cover; 
+    border-radius: 10px; cursor: pointer; transition: 0.2s;
+}
+.gallery-thumb:hover { border: 2px solid #158915; }
+.contact-box { 
+    background-color: #158915; color: white; 
+    padding: 20px; border-radius: 1rem; position: sticky; top: 20px;
+}
+.badge-price { background-color: #eefcee; color: #158915; font-size: 1.5rem; padding: 10px 20px; border-radius: 30px; }
+/* Rounded corners for the carousel */
+.carousel, .carousel-inner, .carousel-item img {
+    border-radius: 1.5rem !important;
+}
+
+/* Make the navigation arrows green to match your theme */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #158915;
+    border-radius: 50%;
+    background-size: 60%;
+}
+
+/* Style for the dots at the bottom */
+.carousel-indicators [data-bs-target] {
+    background-color: #158915;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+/* Ensure images maintain a good height in the slider */
+.main-img-large {
+    height: 500px;
+    object-fit: cover;
+}

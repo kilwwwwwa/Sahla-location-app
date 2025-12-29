@@ -1,0 +1,94 @@
+body{
+    font-family: 'Inter', 'Arial', sans-serif !important;
+}
+/* --- Top Banner Styling --- */
+.top-banner {
+    width: 100%;
+    background-color: transparent; /* Key green color */
+    padding: 20px 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.banner-logo {
+    color: white;
+    font-size: 2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* --- Dashboard & Card Styles --- */
+.green-text { color: #158915; font-weight: bold; }
+
+.add-btn {
+    background-color: #158915;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.add-btn:hover { background-color: #106810; color: white; transform: scale(1.05); }
+
+.pub-card {
+    background: white;
+    border: 2px solid #eefcee;
+    border-radius: 1.2rem;
+    overflow: hidden;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.pub-card:hover { transform: translateY(-5px); border-color: #9bd69b; }
+
+.card-img-container img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body-custom { padding: 20px; }
+.pub-title { color: #212529; font-weight: bold; margin-bottom: 5px; }
+.pub-price { color: #158915; font-size: 1.2rem; font-weight: 800; margin-bottom: 2px; }
+.pub-date { color: #6c757d; font-size: 0.85rem; margin-bottom: 15px; }
+
+.consult-btn {
+    background-color: white;
+    color: #158915;
+    border: 2px solid #158915;
+    padding: 8px;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.consult-btn:hover { background-color: #158915; color: white; }
+
+/* Textarea customization */
+textarea.form-control { border-radius: 15px !important; padding: 15px !important; }
+
+/* Ensure cards in a row have equal height */
+.pub-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-body-custom {
+    flex: 1; /* Pushes the button to the bottom */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Gray text for empty state */
+.text-muted {
+    color: #6c757d !important;
+    font-style: italic;
+}
+
+/* Responsive adjustment for images */
+.card-img-container img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}

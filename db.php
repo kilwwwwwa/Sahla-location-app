@@ -1,14 +1,17 @@
 <?php
 $host = "localhost";
-$user = "root";      // Default for XAMPP/WAMP
-$pass = "";          // Default for XAMPP/WAMP (leave empty)
+$user = "root";
+$pass = "";
 $dbname = "sahla_db";
 
-// Establish connection
 $conn = new mysqli($host, $user, $pass, $dbname);
 
-// Check if the connection was successful
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // Create a $conn variable too so login/register.php don't break
+    $conn = new mysqli($host, $user, $pass, $dbname); 
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
 }
 ?>

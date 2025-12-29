@@ -1,0 +1,75 @@
+body{
+    font-family: 'Inter', 'Arial', sans-serif;
+}
+/* --- Top Banner Styling --- */
+.top-banner {
+    width: 100%;
+    background-color: transparent; /* Key green color */
+    padding: 20px 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.banner-logo {
+    color: white;
+    font-size: 2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* 1. Layout & Container */
+.main-container {
+    width: 100%;
+    max-width: 500px; /* Slightly wider than login to fit form rows */
+    margin: 40px auto;
+}
+
+/* 2. The Form Box (Green Theme) */
+.form-card { 
+    background-color: #eefcee; /* Light green background */
+    border: 2px solid #9bd69b; /* Muted green border */
+    border-radius: 1.5rem; 
+    padding: 2.5rem 2rem 2rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+}
+
+/* 3. Inputs & Textarea */
+.form-control {
+    height: 55px; /* Taller inputs for better UX */
+    border-radius: 25px; /* Rounded pill shape */
+    border: 2px solid #dee2e6;
+    padding-left: 20px;
+}
+
+/* Specific styling for the Description box */
+textarea.form-control {
+    height: auto; /* Allows textarea to grow */
+    border-radius: 15px; /* Slightly less rounded for text areas */
+    padding: 15px;
+}
+
+/* 4. Labels */
+.form-label {
+    font-weight: bold;
+    color: #158915; /* Sahla Green for labels */
+    margin-left: 10px;
+    margin-bottom: 8px;
+}
+
+/* 5. The Big Green Publish Button */
+.submit-btn {
+    height: 60px;
+    border-radius: 30px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    background-color: #158915;
+    border-color: #158915;
+    color: white;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #106810;
+    transform: scale(1.02); /* Slight pop effect on hover */
+}
