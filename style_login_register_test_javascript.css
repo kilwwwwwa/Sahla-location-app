@@ -1,0 +1,174 @@
+/* --- Top Banner Styling --- */
+.top-banner {
+    width: 100%;
+    background-color: transparent; /* Key green color */
+    padding: 20px 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.banner-logo {
+    color: white;
+    font-size: 2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- General Page Setup --- */
+body { 
+    background-color: #f8faf8; /* Light background */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* Stack container and footer vertically */
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 400px;
+    margin-top: auto;   /* These 'auto' margins keep the form centered */
+    margin-bottom: auto; /* vertically between the header and footer */
+    padding: 40px 0;
+}
+
+/* --- Form Card Styling --- */
+.form-card { 
+    background-color: #eefcee; /* Light green card background */
+    border: 2px solid #9bd69b; /* Muted green border */
+    border-radius: 1.5rem; 
+    padding: 2.5rem 2rem 2rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+}
+
+/* --- Toggle Button Bar (Separated) --- */
+.toggle-group {
+    margin-bottom: 20px; 
+    display: flex;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; 
+}
+
+.toggle-btn {
+    cursor: pointer;
+    text-align: center;
+    padding: 10px 30px;
+    font-weight: bold;
+    flex-grow: 1;
+    background-color: white;
+    color: #158915; /* Main Green */
+    border: 2px solid #158915;
+    transition: all 0.2s;
+}
+
+/* Active State for Toggle Buttons */
+.toggle-btn.active {
+    background-color: #158915; /* Active Green */
+    color: white;
+}
+
+.login-label { 
+    border-top-left-radius: 1rem; 
+    border-bottom-left-radius: 1rem; 
+    border-right: none; 
+}
+
+.register-label { 
+    border-top-right-radius: 1rem; 
+    border-bottom-right-radius: 1rem; 
+}
+
+/* --- Form Visibility Logic --- */
+.form-section { 
+    display: none; 
+}
+
+.form-section.active { 
+    display: block; 
+}
+
+/* --- Input and Label Styling --- */
+.form-control {
+    height: 55px;
+    border-radius: 25px;
+    border: 2px solid #dee2e6;
+    background-color: white;
+}
+
+.form-label {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #212529;
+    min-width: 100px;
+}
+
+/* --- Submit Button Styling --- */
+.submit-btn {
+    height: 60px;
+    border-radius: 30px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-top: 2.5rem;
+    background-color: #158915; /* Main Green */
+    border-color: #158915;
+    color: white;
+}
+
+.submit-btn:hover, .submit-btn:focus { 
+    background-color: #106810; /* Darker Green */
+    border-color: #106810;
+    color: white;
+}
+
+.submit-btn:active {
+    background-color: #093d09 !important; /* Deep Green when pressed */
+    border-color: #093d09 !important;
+    color: white;
+}
+/* Container for relative positioning */
+.position-relative {
+    position: relative;
+}
+
+/* Positioning the eye icon */
+.toggle-password-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #158915; /* Matching your green theme */
+    z-index: 10;
+}
+
+/* Ensure the text doesn't go under the icon */
+.form-control {
+    padding-right: 45px !important;
+}
+
+/* Style for input fields when invalid */
+.is-invalid {
+    border-color: #dc3545 !important;
+}
+
+/* Style for error messages */
+.error-msg {
+    color: #dc3545;
+    font-size: 0.75rem;
+    margin-top: -15px;
+    margin-bottom: 15px;
+    display: none; /* Hidden by default */
+    padding-left: 110px; /* Aligns with the input field instead of the label */
+}
+
+/* --- Footer Styling --- */
+.app-footer {
+    padding: 20px 0;
+    font-size: 0.9rem;
+    color: #158915; /* Matching your green theme */
+    font-weight: 500;
+    text-align: center;
+}
