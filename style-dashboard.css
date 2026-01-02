@@ -92,3 +92,69 @@ textarea.form-control { border-radius: 15px !important; padding: 15px !important
     height: 200px;
     object-fit: cover;
 }
+/* Container styling */
+.filter-container {
+    border: 1px solid #158915;
+    border-radius: 12px !important;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Custom styling for labels */
+.green-text {
+    color: #158915 !important;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Styling the Input Groups */
+.custom-input-group {
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.custom-input-group .input-group-text {
+    background-color: #f8f9fa;
+    border-right: none;
+    color: #6c757d;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.custom-input-group .form-control {
+    border-left: none;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+}
+
+.custom-input-group .form-control:focus {
+    box-shadow: none;
+    border-color: #dee2e6;
+}
+
+/* Hover/Focus effect for the whole group */
+.custom-input-group:focus-within {
+    box-shadow: 0 0 0 3px rgba(21, 137, 21, 0.15);
+    border-color: #158915;
+}
+
+.custom-input-group:focus-within .input-group-text {
+    color: #158915;
+    background-color: #f0f7f0;
+}
+
+/* Remove default number arrows (spinners) for a cleaner look */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    /* Standard property for modern browsers */
+    appearance: textfield;
+    /* Legacy prefix for older Firefox versions */
+    -moz-appearance: textfield;
+}

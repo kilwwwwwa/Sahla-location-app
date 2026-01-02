@@ -34,7 +34,7 @@ body{
     background-color: #158915; color: white; 
     padding: 20px; border-radius: 1rem; position: sticky; top: 20px;
 }
-.badge-price { background-color: #eefcee; color: #158915; font-size: 1.5rem; padding: 10px 20px; border-radius: 30px; }
+.contact-box .badge-price { background-color: #eefcee; color: #158915; font-size: 1.5rem; padding: 10px 20px; border-radius: 5px !important; }
 /* Rounded corners for the carousel */
 .carousel, .carousel-inner, .carousel-item img {
     border-radius: 1.5rem !important;
