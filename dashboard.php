@@ -1,5 +1,5 @@
 <?php
-require 'db.php'; // Includes your PDO connection
+require 'db.php';
 
 // Fetch all publications
 try {
@@ -20,9 +20,11 @@ try {
     </head>
     <body class="d-flex flex-column align-items-center">
 
-        <header class="top-banner">
+        <header class="top-banner d-flex justify-content-around align-items-center">
             <div class="banner-logo"><img src="./Assets/logo-sahla-webapp-text-bold.png" alt="sahla" height="130" width="130"></div>
+            <a href="logout.php" class="btn btn-danger rounded-pill">Logout</a>
         </header>
+        <button id="toggleFilters" class="btn btn-secondary mb-3 rounded-pill">Hide Filters</button>
         <div class="filter-container shadow-sm p-4 mb-5 bg-white rounded">
             <div class="row align-items-end g-3">
                 <div class="col-md-5">
@@ -103,6 +105,12 @@ try {
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script>
             $(document).ready(function(){
+                // Toggle filters
+                $("#toggleFilters").click(function() {
+                    $(".filter-container").toggle();
+                    $(this).text($(this).text() === "Hide Filters" ? "Show Filters" : "Hide Filters");
+                });
+
                 // Trigger filter when typing in search OR price boxes
                 $("#searchInput, #minPrice, #maxPrice").on("keyup change", function() {
                     
