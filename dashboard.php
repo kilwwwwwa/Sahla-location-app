@@ -60,9 +60,14 @@ try {
         <div class="container my-5">
             <div class="d-flex justify-content-between align-items-center mb-5">
                 <h2 class="green-text">Rent Publications</h2>
-                <a href="add-publication.html" class="add-btn">
-                    <span>+</span> Add Publication
-                </a>
+                <div class="d-flex gap-2">
+                    <a href="export-xml.php" class="btn btn-dark rounded-pill">
+                        <i class="fas fa-download me-2"></i>Export to XML
+                    </a>
+                    <a href="add-publication.html" class="add-btn">
+                        <span>+</span> Add Publication
+                    </a>
+                </div>
             </div>
 
             <div class="row g-4 justify-content-center">
