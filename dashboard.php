@@ -1,10 +1,24 @@
 <?php
+session_start();
 require 'db.php';
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
 
 // Fetch all publications
 try {
     $stmt = $pdo->query("SELECT id, title, price, period, main_image, date_published FROM publications ORDER BY date_published DESC");
-    $publications = $stmt->fetchAll();
+    $all_publications = $stmt->fetchAll();
+    
+    // Fetch user's own publications
+    $stmt = $pdo->prepare("SELECT id, title, price, period, main_image, date_published FROM publications WHERE user_id = ? ORDER BY date_published DESC");
+    $stmt->execute([$user_id]);
+    $user_publications = $stmt->fetchAll();
 } catch (PDOException $e) {
     die("Error fetching data: " . $e->getMessage());
 }
@@ -16,6 +30,7 @@ try {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Sahla - Dashboard</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link rel="stylesheet" href="style-dashboard.css">
     </head>
     <body class="d-flex flex-column align-items-center">
@@ -59,11 +74,14 @@ try {
         </div>
         <div class="container my-5">
             <div class="d-flex justify-content-between align-items-center mb-5">
-                <h2 class="green-text">Rent Publications</h2>
+                <div class="d-flex align-items-center gap-3">
+                    <h2 class="green-text mb-0">Rent Publications</h2>
+                    <button id="viewToggle" class="btn btn-outline-success rounded-pill" data-view="all">
+                        <i class="fas fa-list me-2"></i>Mes Publications
+                    </button>
+                </div>
                 <div class="d-flex gap-2">
-                    <a href="export-xml.php" class="btn btn-dark rounded-pill">
-                        <i class="fas fa-download me-2"></i>Export to XML
-                    </a>
+                    <a href="export-xml.php" class="btn btn-dark rounded-pill text-center">Export to XML</a>
                     <a href="add-publication.html" class="add-btn">
                         <span>+</span> Add Publication
                     </a>
@@ -71,9 +89,9 @@ try {
             </div>
 
             <div class="row g-4 justify-content-center">
-                <?php if (count($publications) > 0): ?>
-                    <?php foreach ($publications as $pub): ?>
-                        <div class="col-md-4 searchable-item col-sm-6">
+                <?php if (count($all_publications) > 0): ?>
+                    <?php foreach ($all_publications as $pub): ?>
+                        <div class="col-md-4 searchable-item col-sm-6" data-user-pub="false">
                             <div class="pub-card h-100">
                                 <div class="card-img-container">
                                     <?php 
@@ -100,6 +118,37 @@ try {
                     </div>
                 <?php endif; ?>
             </div>
+
+            <div class="row g-4 justify-content-center" id="userPublications" style="display: none;">
+                <?php if (count($user_publications) > 0): ?>
+                    <?php foreach ($user_publications as $pub): ?>
+                        <div class="col-md-4 searchable-item col-sm-6" data-user-pub="true">
+                            <div class="pub-card h-100">
+                                <div class="card-img-container">
+                                    <?php 
+                                        $img = !empty($pub['main_image']) ? "uploads/".$pub['main_image'] : "assets/placeholder.jpg";
+                                    ?>
+                                    <img src="<?php echo htmlspecialchars($img); ?>" alt="Item">
+                                </div>
+                                <div class="card-body-custom d-flex flex-column">
+                                    <h5 class="pub-title"><?php echo htmlspecialchars($pub['title']); ?></h5>
+                                    <p class="pub-price"><?php echo htmlspecialchars($pub['price']); ?> DA / <?php echo htmlspecialchars($pub['period']); ?></p>
+                                    <p class="pub-date">Published: <?php echo date('M d, Y', strtotime($pub['date_published'])); ?></p>
+                                    <div class="mt-auto">
+                                        <a href="details.php?id=<?php echo $pub['id']; ?>" class="btn consult-btn w-100">Consult Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+
+                <?php else: ?>
+                    <div class="col-12 text-center py-5">
+                        <h4 class="text-muted fw-normal">You have no publications yet</h4>
+                        <p class="text-secondary">Create your first publication by clicking the green button above!</p>
+                    </div>
+                <?php endif; ?>
+            </div>
         </div>
 
         <footer class="app-footer mt-auto">
@@ -110,6 +159,33 @@ try {
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script>
             $(document).ready(function(){
+                let currentView = "all"; // Track current view
+
+                // Toggle between All Publications and Mes Publications
+                $("#viewToggle").click(function() {
+                    currentView = currentView === "all" ? "user" : "all";
+                    
+                    if (currentView === "all") {
+                        $(".row.g-4").show();
+                        $("#userPublications").hide();
+                        $(this).removeClass("active");
+                        $(this).html('<i class="fas fa-list me-2"></i>Mes Publications');
+                    } else {
+                        $(".row.g-4").hide();
+                        $("#userPublications").show();
+                        $(this).addClass("active");
+                        $(this).html('<i class="fas fa-list me-2"></i>All Publications');
+                    }
+                    
+                    // Clear filters when switching views
+                    $("#searchInput").val("");
+                    $("#minPrice").val("");
+                    $("#maxPrice").val("");
+                    
+                    // Reapply filters
+                    applyFilters();
+                });
+
                 // Toggle filters
                 $("#toggleFilters").click(function() {
                     $(".filter-container").toggle();
@@ -118,13 +194,19 @@ try {
 
                 // Trigger filter when typing in search OR price boxes
                 $("#searchInput, #minPrice, #maxPrice").on("keyup change", function() {
-                    
+                    applyFilters();
+                });
+
+                function applyFilters() {
                     // 1. Get all filter values
                     var searchTerm = $("#searchInput").val().toLowerCase().trim();
                     var min = parseFloat($("#minPrice").val()) || 0;
                     var max = parseFloat($("#maxPrice").val()) || Infinity;
 
-                    $(".searchable-item").each(function() {
+                    // Select the visible row container
+                    var containerSelector = currentView === "all" ? ".row.g-4:visible" : "#userPublications:visible .row.g-4";
+                    
+                    $(containerSelector + " .searchable-item").each(function() {
                         // 2. Get the Title
                         var titleText = $(this).find(".pub-title").text().toLowerCase().trim();
                         var words = titleText.split(/\s+/);
@@ -146,12 +228,12 @@ try {
 
                     // "No Results" message handling
                     handleNoResults();
-                });
+                }
 
                 function handleNoResults() {
                     if($(".searchable-item:visible").length === 0) {
                         if($("#noResultsMsg").length === 0) {
-                            $(".row.g-4").append('<div id="noResultsMsg" class="col-12 text-center py-5"><h4 class="text-muted">No items match your criteria.</h4></div>');
+                            $(".row.g-4:visible, #userPublications:visible .row.g-4").append('<div id="noResultsMsg" class="col-12 text-center py-5"><h4 class="text-muted">No items match your criteria.</h4></div>');
                         }
                     } else {
                         $("#noResultsMsg").remove();
