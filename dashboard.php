@@ -39,8 +39,8 @@ try {
             <div class="banner-logo"><img src="./Assets/logo-sahla-webapp-text-bold.png" alt="sahla" height="130" width="130"></div>
             <a href="logout.php" class="btn btn-danger rounded-pill">Logout</a>
         </header>
-        <button id="toggleFilters" class="btn btn-secondary mb-3 rounded-pill">Hide Filters</button>
-        <div class="filter-container shadow-sm p-4 mb-5 bg-white rounded">
+        <button id="toggleFilters" class="btn btn-success text-white mb-3 rounded-pill">Hide Filters</button>
+        <div class="filter-container shadow-sm p-4 mb-5 border-2 bg-white rounded">
             <div class="row align-items-end g-3">
                 <div class="col-md-5">
                     <label class="form-label fw-bold green-text mb-2">
