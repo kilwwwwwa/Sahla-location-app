@@ -1,10 +1,9 @@
 body{
     font-family: 'Inter', 'Arial', sans-serif !important;
 }
-/* --- Top Banner Styling --- */
 .top-banner {
     width: 100%;
-    background-color: transparent; /* Key green color */
+    background-color: transparent;
     padding: 20px 0;
     text-align: center;
     margin-bottom: 20px;
@@ -18,7 +17,6 @@ body{
     letter-spacing: 3px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-/* --- Dashboard & Card Styles --- */
 .green-text { color: #158915; font-weight: bold; }
 
 .add-btn {
@@ -64,10 +62,8 @@ body{
 }
 .consult-btn:hover { background-color: #158915; color: white; }
 
-/* Textarea customization */
 textarea.form-control { border-radius: 15px !important; padding: 15px !important; }
 
-/* Ensure cards in a row have equal height */
 .pub-card {
     display: flex;
     flex-direction: column;
@@ -75,24 +71,22 @@ textarea.form-control { border-radius: 15px !important; padding: 15px !important
 }
 
 .card-body-custom {
-    flex: 1; /* Pushes the button to the bottom */
+    flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-/* Gray text for empty state */
 .text-muted {
     color: #6c757d !important;
     font-style: italic;
 }
 
-/* Responsive adjustment for images */
 .card-img-container img {
     width: 100%;
     height: 200px;
     object-fit: cover;
 }
-/* Container styling */
+
 .filter-container {
     border: 1px solid #158915;
     border-radius: 12px !important;
@@ -100,7 +94,6 @@ textarea.form-control { border-radius: 15px !important; padding: 15px !important
     margin: 0 auto;
 }
 
-/* Custom styling for labels */
 .green-text {
     color: #158915 !important;
     font-size: 0.95rem;
@@ -108,7 +101,6 @@ textarea.form-control { border-radius: 15px !important; padding: 15px !important
     letter-spacing: 0.5px;
 }
 
-/* Styling the Input Groups */
 .custom-input-group {
     border-radius: 8px;
     overflow: hidden;
@@ -134,7 +126,6 @@ textarea.form-control { border-radius: 15px !important; padding: 15px !important
     border-color: #dee2e6;
 }
 
-/* Hover/Focus effect for the whole group */
 .custom-input-group:focus-within {
     box-shadow: 0 0 0 3px rgba(21, 137, 21, 0.15);
     border-color: #158915;
@@ -145,7 +136,6 @@ textarea.form-control { border-radius: 15px !important; padding: 15px !important
     background-color: #f0f7f0;
 }
 
-/* Remove default number arrows (spinners) for a cleaner look */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -153,8 +143,6 @@ input::-webkit-inner-spin-button {
 }
 
 input[type=number] {
-    /* Standard property for modern browsers */
     appearance: textfield;
-    /* Legacy prefix for older Firefox versions */
     -moz-appearance: textfield;
 }
