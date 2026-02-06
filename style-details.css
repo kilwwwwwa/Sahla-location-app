@@ -1,7 +1,6 @@
-/* --- Top Banner Styling --- */
 .top-banner {
     width: 100%;
-    background-color: transparent; /* Key green color */
+    background-color: transparent;
     padding: 20px 0;
     text-align: center;
     margin-bottom: 20px;
@@ -35,12 +34,10 @@ body{
     padding: 20px; border-radius: 1rem; position: sticky; top: 20px;
 }
 .contact-box .badge-price { background-color: #eefcee; color: #158915; font-size: 1.5rem; padding: 10px 20px; border-radius: 5px !important; }
-/* Rounded corners for the carousel */
 .carousel, .carousel-inner, .carousel-item img {
     border-radius: 1.5rem !important;
 }
 
-/* Make the navigation arrows green to match your theme */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     background-color: #158915;
@@ -48,7 +45,6 @@ body{
     background-size: 60%;
 }
 
-/* Style for the dots at the bottom */
 .carousel-indicators [data-bs-target] {
     background-color: #158915;
     width: 12px;
@@ -56,7 +52,6 @@ body{
     border-radius: 50%;
 }
 
-/* Ensure images maintain a good height in the slider */
 .main-img-large {
     height: 500px;
     object-fit: cover;
